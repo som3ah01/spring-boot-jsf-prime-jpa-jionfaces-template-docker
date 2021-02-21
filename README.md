@@ -76,6 +76,24 @@ src\main\resources\META-INF\resources\
   ./mvnw spring-boot:run
  ```
  
+ # To Build Docker and Compose
+ > We Have to package our jar file
+ ```
+    mvn clean compile package -DskipTests
+ ```
+ > Then to generate Docker Image
+ ```
+ docker build -t spring-boot-jsf-template .
+ ```
+ > To build Compose file with
+ ```
+   docker-compose up -d
+ ```
+ > To delete the contianer 
+ ```
+ docker-compose down --volumes
+ ```
+ 
  
  > Thanks :+1: if you have any comments to share with me :shipit:  
  > By @Ismail Shebl
