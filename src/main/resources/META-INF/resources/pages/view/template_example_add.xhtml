@@ -1,0 +1,48 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:fn="http://xmlns.jcp.org/jsp/jstl/functions">
+
+
+	<h:form id="template_example_normal">
+		<p:growl id="msgs" showDetail="true" />
+
+		<p:dataTable value="#{templateExampleAddBean.templateExampleList}" var="exampleModel"
+			id="exampleAddTable" draggableColumns="true" 
+			  paginator="true" rows="5" lazy="true">
+			<f:facet name="header">
+				<p:outputLabel value="#{msg.get('template.example.table.title')}" />
+				
+			</f:facet>
+			<p:column filterBy="#{exampleModel.id}" filterMatchMode="contains"
+				sortBy="#{exampleModel.id}" headerText="#{msg.get('template.example.id')}">
+				<h:outputText value="#{exampleModel.id}" />
+			</p:column>
+			<p:column filterBy="#{exampleModel.name}" filterMatchMode="contains"
+				sortBy="#{exampleModel.name}" headerText="#{msg.get('template.example.name')}">
+				<p:inputText value="#{exampleModel.name}" style="width:100%" />
+			</p:column>
+			<p:column filterBy="#{exampleModel.mobile}" filterMatchMode="contains"
+				sortBy="#{exampleModel.mobile}" headerText="#{msg.get('template.example.mobile')}">
+				<p:inputMask value="#{exampleModel.mobile}" style="width:100%"
+							label="Mobile" mask="(999) 9999-9999" />
+			</p:column>
+			<p:column filterBy="#{exampleModel.email}" filterMatchMode="contains"
+				sortBy="#{exampleModel.email}" headerText="#{msg.get('template.example.email')}">
+				<p:inputText value="#{exampleModel.email}" style="width:100%"
+							label="E-Mail" />
+			</p:column>
+			<p:column headerText="#{msg.get('template.example.lastUpDateDate')}" sortBy="#{exampleModel.updatedAt}">
+				<p:calendar  pattern="dd-MMM-yyyy" converter="#{localDateTimeConverter}" disabled="true" value="#{exampleModel.updatedAt}"/>
+			</p:column>
+			
+			<f:facet name="footer">
+             <p:commandButton icon="pi pi-plus-circle"  value="#{msg.get('template.example.addNew')}" update="exampleAddTable" actionListener="#{templateExampleAddBean.addNew}" />
+             <p:commandButton icon="pi pi-plus-circle"  value="#{msg.get('template.example.saveAll')}" update="exampleAddTable" actionListener="#{templateExampleAddBean.save}" />
+        </f:facet>
+		</p:dataTable>
+	</h:form>
+</ui:composition>

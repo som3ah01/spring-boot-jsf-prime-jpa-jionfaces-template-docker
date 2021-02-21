@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:fn="http://xmlns.jcp.org/jsp/jstl/functions" lang="en">
+<h:head>
+	<title>#{msg.get('template.example.broswer.title')}</title>
+	<meta name="keywords" content="enter,your,keywords,here" />
+	<meta name="description" content="Main Page for the Application" />
+	<meta name="content-type" content="text/html; charset=UTF-8" />
+	<link rel="stylesheet" type="text/css" href="styles.css" />
+</h:head>
+<h:body>
+	<p:layout fullPage="true">
+		<p:layoutUnit position="north" resizable="true">
+			<ui:include src="#{layoutBean.headerURL}" />
+		</p:layoutUnit>
+		<p:layoutUnit position="center">
+			<ui:include src="#{layoutBean.contentURL}" />
+		</p:layoutUnit>
+
+	</p:layout>
+</h:body>
+</html>

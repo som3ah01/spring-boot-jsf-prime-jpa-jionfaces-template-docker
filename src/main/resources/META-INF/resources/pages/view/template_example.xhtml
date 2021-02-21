@@ -1,0 +1,69 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:fn="http://xmlns.jcp.org/jsp/jstl/functions">
+
+
+	<h:form id="template_example">
+		<p:growl id="msgs" showDetail="true" />
+
+		<p:dataTable value="#{templateExampleBean.templateExampleLazyDataModel}" var="exampleModel"
+			id="exampleTable" draggableColumns="true" editable="true"
+			  paginator="true" rows="5" lazy="true">
+			<f:facet name="header">
+				<p:outputLabel value="#{msg.get('template.example.table.title')}" />
+				
+			</f:facet>
+			<p:ajax event="rowEdit" listener="#{templateExampleBean.onRowEdit}" />
+			<p:column filterBy="#{exampleModel.id}" filterMatchMode="contains"
+				sortBy="#{exampleModel.id}" headerText="#{msg.get('template.example.id')}">
+				<h:outputText value="#{exampleModel.id}" />
+			</p:column>
+			<p:column filterBy="#{exampleModel.name}" filterMatchMode="contains"
+				sortBy="#{exampleModel.name}" headerText="#{msg.get('template.example.name')}">
+				<p:cellEditor>
+					<f:facet name="output">
+						<h:outputText value="#{exampleModel.name}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText value="#{exampleModel.name}" style="width:100%" />
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
+			<p:column filterBy="#{exampleModel.mobile}" filterMatchMode="contains"
+				sortBy="#{exampleModel.mobile}" headerText="#{msg.get('template.example.mobile')}">
+				<p:cellEditor>
+					<f:facet name="output">
+						<h:outputText value="#{exampleModel.mobile}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputMask value="#{exampleModel.mobile}" style="width:100%"
+							label="Mobile" mask="(999) 9999-9999" />
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
+			<p:column filterBy="#{exampleModel.email}" filterMatchMode="contains"
+				sortBy="#{exampleModel.email}" headerText="#{msg.get('template.example.email')}">
+				<p:cellEditor>
+					<f:facet name="output">
+						<h:outputText value="#{exampleModel.email}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText value="#{exampleModel.email}" style="width:100%"
+							label="E-Mail" />
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
+			<p:column headerText="#{msg.get('template.example.lastUpDateDate')}" sortBy="#{exampleModel.updatedAt}">
+				<p:calendar  pattern="dd-MMM-yyyy" converter="#{localDateTimeConverter}" disabled="true" value="#{exampleModel.updatedAt}"/>
+			</p:column>
+			<p:column style="width:35px">
+				<p:rowEditor />
+			</p:column>
+			
+		</p:dataTable>
+	</h:form>
+</ui:composition>
